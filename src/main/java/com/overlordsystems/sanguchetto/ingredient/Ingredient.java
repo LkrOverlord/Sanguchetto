@@ -6,14 +6,14 @@ public class Ingredient {
 
     private int id;
     private String name;
-    private float price;
+    private double price;
     private int stock;
 
     public Ingredient() {
 
     }
 
-    public Ingredient(String name, float price, int stock) {
+    public Ingredient(String name, double price, int stock) {
         this.name = name;
         this.price = price;
         this.stock = stock;
@@ -47,7 +47,7 @@ public class Ingredient {
         this.name = name;
     }
 
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 
