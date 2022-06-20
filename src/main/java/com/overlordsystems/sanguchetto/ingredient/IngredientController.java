@@ -16,6 +16,8 @@ public class IngredientController {
     public ModelAndView goToIngredient(){
         ModelAndView model = new ModelAndView("/admin/ingredientView");
         model.addObject("ingredient", new Ingredient());
+        List<Ingredient> ingredientList = ingredientService.getAllIngredients();
+        model.addObject("ingredientList", ingredientList);
         return model;
     }
 
