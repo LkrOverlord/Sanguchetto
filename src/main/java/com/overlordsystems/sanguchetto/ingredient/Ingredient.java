@@ -51,7 +51,7 @@ public class Ingredient {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
