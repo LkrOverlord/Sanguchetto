@@ -12,7 +12,13 @@ public class IngredientController {
     @Autowired
     private IngredientService ingredientService;
 
-    @RequestMapping("/sanguchetto/admin/products/ingredients")
+    @RequestMapping("/sanguchetto/admin/product/ingredient")
+    public ModelAndView goToIngredient(){
+        ModelAndView model = new ModelAndView("/admin/ingredientView");
+        return model;
+    }
+
+    @RequestMapping("/sanguchetto/admin/product/ingredients")
     public List<Ingredient> getAllIngredients(){
         return ingredientService.getAllIngredients();
     }
