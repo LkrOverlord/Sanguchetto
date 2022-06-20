@@ -1,8 +1,7 @@
 package com.overlordsystems.sanguchetto.ingredient;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -16,5 +15,10 @@ public class IngredientController {
     @RequestMapping("/sanguchetto/admin/products/ingredients")
     public List<Ingredient> getAllIngredients(){
         return ingredientService.getAllIngredients();
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/sanguchetto/admin/products/ingredients")
+    public void addIngredient(@RequestBody Ingredient ingredient){
+        ingredientService.addIngredient(ingredient);
     }
 }
