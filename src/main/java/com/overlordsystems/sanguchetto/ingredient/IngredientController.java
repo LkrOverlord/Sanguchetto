@@ -15,6 +15,7 @@ public class IngredientController {
     @RequestMapping("/sanguchetto/admin/product/ingredient")
     public ModelAndView goToIngredient(){
         ModelAndView model = new ModelAndView("/admin/ingredientView");
+        model.addObject("ingredient", new Ingredient());
         return model;
     }
 
@@ -23,8 +24,9 @@ public class IngredientController {
         return ingredientService.getAllIngredients();
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/sanguchetto/admin/products/ingredients")
-    public void addIngredient(@RequestBody Ingredient ingredient){
-        ingredientService.addIngredient(ingredient);
+    @RequestMapping(value = "/sanguchetto/admin/product/ingredients", method = RequestMethod.POST)
+    public void addIngredient(@ModelAttribute Ingredient ingredient, Ingredient newIngredient){
+        newIngredient = ingredient;
+        ingredientService.addIngredient(newIngredient);
     }
 }
