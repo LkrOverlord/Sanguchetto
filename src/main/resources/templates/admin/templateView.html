@@ -15,8 +15,19 @@
 </head>
 <body>
 
-    <nav th:replace="/admin/templateView :: navbarTemplate">
-
+    <nav id="navbar-admin" class="navbar navbar-light bg-dark px-3" th:fragment="navbarTemplate">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a class="nav-link" href="#scrollspyHeading1">Usuarios</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#scrollspyHeading2">Stock</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#scrollspyHeading2">Cerrar sesión</a>
+            </li>
+        </ul>
     </nav>
 
     <div class="container-fluid">
@@ -30,8 +41,8 @@
         </div>
     </div>
 
-    <footer th:replace="/admin/templateView :: footerTemplate">
-
+    <footer th:fragment="footerTemplate">
+        <h1>Overlord Systems</h1>
     </footer>
 
 <!-- Optional JavaScript -->
