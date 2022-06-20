@@ -13,8 +13,7 @@ public class Ingredient {
 
     }
 
-    public Ingredient(int id, String name, float price, int stock) {
-        this.id = id;
+    public Ingredient(String name, float price, int stock) {
         this.name = name;
         this.price = price;
         this.stock = stock;
