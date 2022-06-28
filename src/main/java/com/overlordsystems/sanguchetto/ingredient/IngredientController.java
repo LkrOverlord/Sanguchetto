@@ -1,34 +1,38 @@
 package com.overlordsystems.sanguchetto.ingredient;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
-@RestController
+@Controller
 public class IngredientController {
 
     @Autowired
     private IngredientService ingredientService;
 
-    @RequestMapping("/sanguchetto/admin/product/ingredient")
-    public ModelAndView goToIngredient(){
-        ModelAndView model = new ModelAndView("/admin/ingredientView");
-        model.addObject("ingredient", new Ingredient());
-        List<Ingredient> ingredientList = ingredientService.getAllIngredients();
-        model.addObject("ingredientList", ingredientList);
-        return model;
+    @GetMapping("/sanguchetto/admin/product/ingredient")
+    public String goToIngredient(Model model){
+        Ingredient emptyIngredient = new Ingredient();
+        List<Ingredient> allIngredients = ingredientService.getAllIngredients();
+        model.addAttribute("ingredient", emptyIngredient);
+        model.addAttribute("ingredients", allIngredients);
+        return "/admin/ingredientView";
     }
 
-    @RequestMapping("/sanguchetto/admin/product/ingredients")
+    @GetMapping("/sanguchetto/admin/product/ingredients")
     public List<Ingredient> getAllIngredients(){
-        return ingredientService.getAllIngredients();
+        List<Ingredient> allIngredients = ingredientService.getAllIngredients();
+        return allIngredients;
     }
 
-    @RequestMapping(value = "/sanguchetto/admin/product/ingredients", method = RequestMethod.POST)
-    public void addIngredient(@ModelAttribute Ingredient ingredient, Ingredient newIngredient){
-        newIngredient = ingredient;
+    @PostMapping(value = "/sanguchetto/admin/product/ingredients")
+    public String addIngredient(@ModelAttribute Ingredient newIngredient, Model model){
         ingredientService.addIngredient(newIngredient);
+        return "redirect:/sanguchetto/admin/product/ingredient";
     }
 }
