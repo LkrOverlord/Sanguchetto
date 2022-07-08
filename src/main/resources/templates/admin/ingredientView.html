@@ -29,8 +29,8 @@
             <article>
                 <div class = "row justify-content-center">
                     <a type="button" class="btn btn-dark col-2" th:href="@{/sanguchetto/admin/product/addIngredient}">Agregar</a>
-                    <form class="d-flex col-4" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <form class="d-flex col-4" role="search" th:action="@{/sanguchetto/admin/product/getIngredient}" th:object="${ingredient}" method="post">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" th:field="*{name}">
                         <button class="btn btn-outline-primary" type="submit">Search</button>
                     </form>
                 </div>

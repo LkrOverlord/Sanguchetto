@@ -19,6 +19,8 @@ public class IngredientController {
     public String goToIngredient(Model model) {
         List<Ingredient> allIngredients = ingredientService.getAllIngredients();
         model.addAttribute("ingredients", allIngredients);
+        Ingredient emptyIngredient = new Ingredient();
+        model.addAttribute("ingredient", emptyIngredient);
         return "/admin/ingredientView";
     }
 
@@ -35,10 +37,13 @@ public class IngredientController {
         return allIngredients;
     }
 
-    @GetMapping("/sanguchetto/admin/product/getIngredient")
-    public String getIngredient(){
-        return null;
+    @PostMapping("/sanguchetto/admin/product/getIngredient")
+    public String getIngredients(@ModelAttribute Ingredient wantedIngredient, Model model){
+        List<Ingredient> ingredients = ingredientService.getIngredients(wantedIngredient);
+        model.addAttribute("ingredients", ingredients);
+        return "/admin/ingredientView";
     }
+
     @PostMapping(value = "/sanguchetto/admin/product/ingredients")
     public String addIngredient(@ModelAttribute Ingredient newIngredient, Model model){
         ingredientService.addIngredient(newIngredient);

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 /*
 Mediante la anotación service indicamos que esta clase va ser un singleton y por lo tanto cuando se crea la
@@ -32,5 +33,20 @@ public class IngredientService {
 
     public void addIngredient(Ingredient newIngredient){
         ingredients.add(newIngredient);
+    }
+
+    public List<Ingredient> getIngredients(Ingredient wantedIngredient){
+        List<Ingredient> wantedIngredients = new ArrayList<>();
+        this.ingredients.stream()
+        .filter( i -> i
+                .getName()
+                .toLowerCase(Locale.ROOT)
+                .contains(wantedIngredient
+                        .getName()
+                        .toLowerCase(Locale.ROOT)
+                )
+        )
+        .forEach(wantedIngredients::add);
+        return wantedIngredients;
     }
 }
