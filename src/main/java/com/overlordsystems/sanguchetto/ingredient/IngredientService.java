@@ -22,31 +22,50 @@ public class IngredientService {
     no era mutable, es decir no se podia agregar o eliminar elementos.
      */
     private List<Ingredient> ingredients = new ArrayList<>(Arrays.asList(
-            new Ingredient("Tomate",2.5,25),
-            new Ingredient("Papa",1.5,25),
-            new Ingredient("Lechuga",0.5,25)
+            new Ingredient(1,"Tomate", 2.5, 25),
+            new Ingredient(2,"Papa", 1.5, 25),
+            new Ingredient(3,"Lechuga", 0.5, 25)
     ));
 
-    public List<Ingredient> getAllIngredients(){
+    public List<Ingredient> getAllIngredients() {
         return ingredients;
     }
 
-    public void addIngredient(Ingredient newIngredient){
+    public void addIngredient(Ingredient newIngredient) {
         ingredients.add(newIngredient);
     }
 
-    public List<Ingredient> getIngredients(Ingredient wantedIngredient){
+    public List<Ingredient> getIngredients(Ingredient wantedIngredient) {
         List<Ingredient> wantedIngredients = new ArrayList<>();
         this.ingredients.stream()
-        .filter( i -> i
-                .getName()
-                .toLowerCase(Locale.ROOT)
-                .contains(wantedIngredient
+                .filter(i -> i
                         .getName()
                         .toLowerCase(Locale.ROOT)
+                        .contains(wantedIngredient
+                                .getName()
+                                .toLowerCase(Locale.ROOT)
+                        )
                 )
-        )
-        .forEach(wantedIngredients::add);
+                .forEach(wantedIngredients::add);
         return wantedIngredients;
+    }
+
+    public Ingredient getIngredient(int idIngredient) {
+        Ingredient editIngredient = new Ingredient();
+        editIngredient = this.ingredients.stream()
+                .filter(i -> i.getId() == idIngredient)
+                .findFirst()
+                .get();
+        return editIngredient;
+    }
+
+    public void updateIngredient(Ingredient updateIngredient){
+        this.ingredients.forEach(i -> {
+            if(i.getId() == updateIngredient.getId()){
+                i.setName(updateIngredient.getName());
+                i.setPrice(updateIngredient.getPrice());
+                i.setStock(updateIngredient.getStock());
+            }
+        });
     }
 }
