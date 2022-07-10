@@ -13,7 +13,8 @@ public class Ingredient {
 
     }
 
-    public Ingredient(String name, double price, int stock) {
+    public Ingredient(int id, String name, double price, int stock) {
+        this.id = id;
         this.name = name;
         this.price = price;
         this.stock = stock;
@@ -37,6 +38,10 @@ public class Ingredient {
 
     public int getId(){
         return id;
+    }
+
+    public void setId(int id){
+        this.id = id;
     }
 
     public String getName() {
