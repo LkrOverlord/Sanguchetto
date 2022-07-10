@@ -1,11 +1,10 @@
 package com.overlordsystems.sanguchetto.ingredient;
 
+import org.apache.catalina.util.ToStringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -47,6 +46,20 @@ public class IngredientController {
     @PostMapping(value = "/sanguchetto/admin/product/ingredients")
     public String addIngredient(@ModelAttribute Ingredient newIngredient, Model model){
         ingredientService.addIngredient(newIngredient);
+        return "redirect:/sanguchetto/admin/product/ingredient";
+    }
+
+    @GetMapping("/sanguchetto/admin/product/editIngredient/{id}")
+    public String goToEditIngredient(@PathVariable int id, Model model){
+        Ingredient editIngredient = new Ingredient();
+        editIngredient = ingredientService.getIngredient(id);
+        model.addAttribute("ingredient", editIngredient);
+        return "/admin/editIngredientView";
+    }
+
+    @PostMapping(value = "/sanguchetto/admin/product/editIngredient")
+    public String updateIngredient(@ModelAttribute Ingredient updateIngredient){
+        ingredientService.updateIngredient(updateIngredient);
         return "redirect:/sanguchetto/admin/product/ingredient";
     }
 }

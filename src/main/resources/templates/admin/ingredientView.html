@@ -40,6 +40,7 @@
                         <th scope="col">Nombre</th>
                         <th scope="col">Precio</th>
                         <th scope="col">Stock</th>
+                        <th scope="col">Acciones</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -47,6 +48,10 @@
                         <td th:text="${ingredient.name}">Mark</td>
                         <td th:text="${ingredient.price}">Otto</td>
                         <td th:text="${ingredient.stock}">@mdo</td>
+                        <td>
+                            <a th:href="@{/sanguchetto/admin/product/editIngredient/{id}(id=${ingredient.id})}" type="button">Editar</a>
+                            <button>Eliminar</button>
+                        </td>
                     </tr>
 
                     </tbody>
