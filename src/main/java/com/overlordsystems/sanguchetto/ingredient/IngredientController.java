@@ -1,10 +1,12 @@
 package com.overlordsystems.sanguchetto.ingredient;
 
-import org.apache.catalina.util.ToStringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -52,7 +54,7 @@ public class IngredientController {
     @GetMapping("/sanguchetto/admin/product/editIngredient/{id}")
     public String goToEditIngredient(@PathVariable int id, Model model){
         Ingredient editIngredient = new Ingredient();
-        editIngredient = ingredientService.getIngredient(id);
+        editIngredient = ingredientService.getIngredientById(id);
         model.addAttribute("ingredient", editIngredient);
         return "/admin/editIngredientView";
     }

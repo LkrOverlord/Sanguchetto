@@ -2,10 +2,8 @@ package com.overlordsystems.sanguchetto.ingredient;
 
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /*
 Mediante la anotación service indicamos que esta clase va ser un singleton y por lo tanto cuando se crea la
@@ -21,51 +19,57 @@ public class IngredientService {
     Se agrega new ArrayList para que pueda ser una mutable, anteriormente era una lista y por lo tanto
     no era mutable, es decir no se podia agregar o eliminar elementos.
      */
+    /*
+    Dejamos esto porque no sabemos si funciona bien
     private List<Ingredient> ingredients = new ArrayList<>(Arrays.asList(
             new Ingredient(1,"Tomate", 2.5, 25),
             new Ingredient(2,"Papa", 1.5, 25),
             new Ingredient(3,"Lechuga", 0.5, 25)
     ));
 
+     */
+
+    private Map<Integer, Ingredient> ingredientsMaped = new HashMap<>(
+            Map.of( 1, new Ingredient(1,"Tomate",23,45),
+                    2, new Ingredient(2,"Papas fritas",23,45),
+                    3, new Ingredient(3,"Lechuga",23,45)
+            )
+    );
+
     public List<Ingredient> getAllIngredients() {
+        List<Ingredient> ingredients = new ArrayList<>(ingredientsMaped.values());
         return ingredients;
     }
 
     public void addIngredient(Ingredient newIngredient) {
-        ingredients.add(newIngredient);
+        ingredientsMaped.put(newIngredient.getId(), newIngredient);
     }
 
     public List<Ingredient> getIngredients(Ingredient wantedIngredient) {
-        List<Ingredient> wantedIngredients = new ArrayList<>();
-        this.ingredients.stream()
-                .filter(i -> i
-                        .getName()
-                        .toLowerCase(Locale.ROOT)
-                        .contains(wantedIngredient
-                                .getName()
-                                .toLowerCase(Locale.ROOT)
-                        )
+        List<Ingredient> wantedIngredients =ingredientsMaped.values().stream()
+                .filter(ingredient -> ingredient
+                        .getName().toLowerCase(Locale.ROOT)
+                        .contains(wantedIngredient.getName())
                 )
-                .forEach(wantedIngredients::add);
+                .collect(Collectors.toList());
         return wantedIngredients;
     }
 
-    public Ingredient getIngredient(int idIngredient) {
-        Ingredient editIngredient = new Ingredient();
-        editIngredient = this.ingredients.stream()
-                .filter(i -> i.getId() == idIngredient)
+    public Ingredient getIngredientById(int idIngredient) {
+        return this.ingredientsMaped.get(idIngredient);
+    }
+
+    public Ingredient getIngredientByName(String name){
+        Ingredient wantedIngredient= ingredientsMaped.values().stream()
+                .filter(ingredient -> ingredient
+                        .getName().toLowerCase(Locale.ROOT)
+                        .contains(name.toLowerCase(Locale.ROOT)))
                 .findFirst()
                 .get();
-        return editIngredient;
+        return wantedIngredient;
     }
 
     public void updateIngredient(Ingredient updateIngredient){
-        this.ingredients.forEach(i -> {
-            if(i.getId() == updateIngredient.getId()){
-                i.setName(updateIngredient.getName());
-                i.setPrice(updateIngredient.getPrice());
-                i.setStock(updateIngredient.getStock());
-            }
-        });
+        this.ingredientsMaped.put(updateIngredient.getId(), updateIngredient);
     }
 }
