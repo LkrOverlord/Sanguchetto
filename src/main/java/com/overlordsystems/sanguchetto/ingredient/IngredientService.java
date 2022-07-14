@@ -49,7 +49,7 @@ public class IngredientService {
         List<Ingredient> wantedIngredients =ingredientsMaped.values().stream()
                 .filter(ingredient -> ingredient
                         .getName().toLowerCase(Locale.ROOT)
-                        .contains(wantedIngredient.getName())
+                        .contains(wantedIngredient.getName().toLowerCase(Locale.ROOT))
                 )
                 .collect(Collectors.toList());
         return wantedIngredients;
