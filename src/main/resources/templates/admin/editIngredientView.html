@@ -24,7 +24,7 @@
         <section class="col-8">
             <article>
                 <form action="#" th:action="@{/sanguchetto/admin/product/editIngredient}"
-                      th:object="${ingredient}" method="post">
+                      th:object="${ingredient}" th:method="put">
 
                     <!-- Hidden input  -->
                         <input type="hidden" th:field="*{id}">
