@@ -28,10 +28,10 @@
             <h1 id="testValue"></h1>
             <article>
                 <div class = "row justify-content-center">
-                    <a type="button" class="btn btn-dark col-2" th:href="@{/sanguchetto/admin/product/addIngredient}">Agregar</a>
+                    <a type="button" class="btn btn-outline-dark col-2" th:href="@{/sanguchetto/admin/product/addIngredient}">Agregar</a>
                     <form class="d-flex col-4" role="search" th:action="@{/sanguchetto/admin/product/getIngredient}" th:object="${ingredient}" method="post">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" th:field="*{name}">
-                        <button class="btn btn-outline-primary" type="submit">Search</button>
+                        <input class="form-control me-2" type="search" placeholder="Nombre" aria-label="Search" th:field="*{name}">
+                        <button class="btn btn-outline-primary" type="submit">Buscar</button>
                     </form>
                 </div>
                 <table class="table table-striped">
@@ -49,8 +49,13 @@
                         <td th:text="${ingredient.price}">Otto</td>
                         <td th:text="${ingredient.stock}">@mdo</td>
                         <td>
-                            <a th:href="@{/sanguchetto/admin/product/editIngredient/{id}(id=${ingredient.id})}" type="button">Editar</a>
-                            <button>Eliminar</button>
+                            <div class="row justify-content-start">
+                                <a th:href="@{/sanguchetto/admin/product/editIngredient/{id}(id=${ingredient.id})}" type="button" class="btn btn-outline-dark">Editar</a>
+
+                                <form class="col-1" role="search" th:action="@{/sanguchetto/admin/product/deleteIngredient/{id}(id=${ingredient.id})}"  th:method="delete">
+                                    <button class="btn btn-outline-danger" type="submit">Eliminar</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
 
