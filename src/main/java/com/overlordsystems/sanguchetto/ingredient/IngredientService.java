@@ -72,4 +72,8 @@ public class IngredientService {
     public void updateIngredient(Ingredient updateIngredient){
         this.ingredientsMaped.put(updateIngredient.getId(), updateIngredient);
     }
+
+    public void deleteIngredient(int id) {
+        this.ingredientsMaped.remove(id);
+    }
 }
