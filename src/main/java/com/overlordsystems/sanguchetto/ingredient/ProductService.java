@@ -13,7 +13,7 @@ vez ya que sino fuera singleton tengo que crear la lista cada que vez que quiero
 es muy conveniente.
  */
 @Service
-public class IngredientService {
+public class ProductService {
 
     /*
     Se agrega new ArrayList para que pueda ser una mutable, anteriormente era una lista y por lo tanto
@@ -29,47 +29,55 @@ public class IngredientService {
 
      */
 
-    private Map<Integer, Ingredient> ingredientsMaped = new HashMap<>(
-            Map.of( 1, new Ingredient(1,"Tomate",23,45),
-                    2, new Ingredient(2,"Papas fritas",23,45),
-                    3, new Ingredient(3,"Lechuga",23,45)
+    private Map<Integer, Product> productsMaped = new HashMap<>(
+            Map.of( 1, new Product(1,"Tomate",23,45, TypeOfProduct.INGREDIENT),
+                    2, new Product(2,"Papas fritas",23,45, TypeOfProduct.INGREDIENT),
+                    3, new Product(3,"Lechuga",23,45, TypeOfProduct.INGREDIENT)
             )
     );
 
-    public List<Ingredient> getAllIngredients() {
-        List<Ingredient> ingredients = new ArrayList<>(ingredientsMaped.values());
-        return ingredients;
+    public int productsSize(){
+        return this.productsMaped.size();
     }
 
-    public void addIngredient(Ingredient newIngredient) {
-        ingredientsMaped.put(newIngredient.getId(), newIngredient);
+    public List<Product> getAllProducts() {
+        List<Product> products = new ArrayList<>(productsMaped.values());
+        return products;
     }
 
-    public List<Ingredient> getIngredients(Ingredient wantedIngredient) {
-        List<Ingredient> wantedIngredients =ingredientsMaped.values().stream()
-                .filter(ingredient -> ingredient
+    public void addProduct(Product newProduct) {
+        productsMaped.put(newProduct.getId(), newProduct);
+    }
+
+    public List<Product> getProductsByName(ProductKeyword nameProduct) {
+        List<Product> wantedProducts =productsMaped.values().stream()
+                .filter(product -> product
                         .getName().toLowerCase(Locale.ROOT)
-                        .contains(wantedIngredient.getName())
+                        .contains(nameProduct.getName().toLowerCase(Locale.ROOT))
                 )
                 .collect(Collectors.toList());
-        return wantedIngredients;
+        return wantedProducts;
     }
 
-    public Ingredient getIngredientById(int idIngredient) {
-        return this.ingredientsMaped.get(idIngredient);
+    public Product getProductById(int idProduct) {
+        return this.productsMaped.get(idProduct);
     }
 
-    public Ingredient getIngredientByName(String name){
-        Ingredient wantedIngredient= ingredientsMaped.values().stream()
-                .filter(ingredient -> ingredient
+    public Product getIngredientByName(String name){
+        Product wantedProduct= productsMaped.values().stream()
+                .filter(product -> product
                         .getName().toLowerCase(Locale.ROOT)
                         .contains(name.toLowerCase(Locale.ROOT)))
                 .findFirst()
                 .get();
-        return wantedIngredient;
+        return wantedProduct;
     }
 
-    public void updateIngredient(Ingredient updateIngredient){
-        this.ingredientsMaped.put(updateIngredient.getId(), updateIngredient);
+    public void updateProduct(Product updateProduct){
+        this.productsMaped.put(updateProduct.getId(), updateProduct);
+    }
+
+    public void deleteProduct(int id) {
+        this.productsMaped.remove(id);
     }
 }
