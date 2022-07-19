@@ -28,9 +28,9 @@
             <h1 id="testValue"></h1>
             <article>
                 <div class = "row justify-content-center">
-                    <a type="button" class="btn btn-outline-dark col-2" th:href="@{/sanguchetto/admin/product/addIngredient}">Agregar</a>
-                    <form class="d-flex col-4" role="search" th:action="@{/sanguchetto/admin/product/getIngredient}" th:object="${ingredient}" method="post">
-                        <input class="form-control me-2" type="search" placeholder="Nombre" aria-label="Search" th:field="*{name}">
+                    <a type="button" class="btn btn-outline-dark col-2" th:href="@{/sanguchetto/admin/product/add}">Agregar</a>
+                    <form class="d-flex col-4" role="search" th:action="@{/sanguchetto/admin/product/search}"  th:method="post" th:object="${productName}">
+                        <input class="form-control me-2" type="search" placeholder="Nombre..." aria-label="Search" th:field="*{name}">
                         <button class="btn btn-outline-primary" type="submit">Buscar</button>
                     </form>
                 </div>
@@ -40,19 +40,21 @@
                         <th scope="col">Nombre</th>
                         <th scope="col">Precio</th>
                         <th scope="col">Stock</th>
+                        <th scope="col">Tipo</th>
                         <th scope="col">Acciones</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="ingredient : ${ingredients}">
-                        <td th:text="${ingredient.name}">Mark</td>
-                        <td th:text="${ingredient.price}">Otto</td>
-                        <td th:text="${ingredient.stock}">@mdo</td>
+                    <tr th:each="product : ${products}">
+                        <td th:text="${product.name}">Mark</td>
+                        <td th:text="${product.price}">Otto</td>
+                        <td th:text="${product.stock}">@mdo</td>
+                        <td th:text="${product.type}"></td>
                         <td>
                             <div class="row justify-content-start">
-                                <a th:href="@{/sanguchetto/admin/product/editIngredient/{id}(id=${ingredient.id})}" type="button" class="btn btn-outline-dark">Editar</a>
+                                <a th:href="@{/sanguchetto/admin/product/edit/{id}(id=${product.id})}" type="button" class="btn btn-outline-dark">Editar</a>
 
-                                <form class="col-1" role="search" th:action="@{/sanguchetto/admin/product/deleteIngredient/{id}(id=${ingredient.id})}"  th:method="delete">
+                                <form class="col-1" role="search" th:action="@{/sanguchetto/admin/product/delete/{id}(id=${product.id})}"  th:method="delete">
                                     <button class="btn btn-outline-danger" type="submit">Eliminar</button>
                                 </form>
                             </div>
