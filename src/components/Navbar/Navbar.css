@@ -1,0 +1,20 @@
+.navBar{
+    background-color: rgba(92,183,191,0.8) !important;
+    height: 11em;
+}
+
+.buttonsNav{
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+    background-color: brown !important;
+}
+
+.buttonNav{
+    padding: 0 14px 0 10px;
+}
+
+.logoImage{
+    width: 10em;
+    height: 7em;
+}
