@@ -4,12 +4,13 @@ import Navbar from 'react-bootstrap/Navbar';
 import './Navbar.css';
 import LogoBrand from './logo/LogoBrand';
 import { Col, Row } from 'react-bootstrap';
+import ProfileButton from '../Profile/Profile/Profile';
 
 const NavBar = () => {
     return (
         <Navbar expand="lg" className="bg-body-tertiary navBar">
             <Container fluid>
-                <Row className="w-100 no-gutters">
+                <Row className="w-100 no-gutters m-0">
                     {/* Logo*/}
                     <Col lg={3} className='d-flex justify-content-center align-items-center'>
                         <LogoBrand />
@@ -30,6 +31,10 @@ const NavBar = () => {
                         </Navbar.Collapse>
                     </Col>
 
+                    {/*Perfil - iniciar sesión*/}
+                    <Col lg={3} className="d-flex justify-content-end align-items-center m-0">
+                        <ProfileButton />
+                    </Col>
                 </Row>
 
             </Container>
