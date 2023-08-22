@@ -1,0 +1,4 @@
+.styled-component img {
+    height: 1em;  /* o el valor que desees */
+    width: auto;   /* esto es para mantener la proporción */
+}
