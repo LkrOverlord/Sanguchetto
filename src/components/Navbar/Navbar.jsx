@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import './Navbar.css';
 import LogoBrand from './logo/LogoBrand';
 import { Col, Row } from 'react-bootstrap';
-import ProfileButton from '../Profile/Profile/Profile';
+import NavUtilsUser from '../NavUtilsUser/NavUtilsUser';
 
 const NavBar = () => {
     return (
@@ -32,8 +32,8 @@ const NavBar = () => {
                     </Col>
 
                     {/*Perfil - iniciar sesión*/}
-                    <Col lg={3} className="d-flex justify-content-end align-items-center m-0">
-                        <ProfileButton />
+                    <Col lg={3} className="d-flex justify-content-center align-items-center m-0">
+                       <NavUtilsUser></NavUtilsUser>
                     </Col>
                 </Row>
 
