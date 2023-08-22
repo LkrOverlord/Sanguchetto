@@ -1,0 +1,6 @@
+.profileImage{
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+    background-color: brown !important;
+}
