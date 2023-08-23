@@ -1,6 +1,6 @@
 import { Button } from "react-bootstrap";
 import CartIcon from "../../assets/images/cart.svg"
-const Cart = () => {
+const CartButton = () => {
 return ( 
     <Button>
         <img src={CartIcon} alt="" />
@@ -9,4 +9,4 @@ return (
 
 }
  
-export default Cart;
+export default CartButton;

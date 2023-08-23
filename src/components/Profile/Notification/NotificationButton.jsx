@@ -1,7 +1,7 @@
 import { Button } from "react-bootstrap";
 import NotificationIcon from "../../../assets/images/notification.svg";
 
-const Notification = () => {
+const NotificationButton = () => {
     return ( 
         <Button>
             <img src={NotificationIcon} alt="" />
@@ -9,4 +9,4 @@ const Notification = () => {
      );
 }
  
-export default Notification;
+export default NotificationButton;

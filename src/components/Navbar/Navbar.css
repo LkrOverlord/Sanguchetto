@@ -18,3 +18,22 @@
     width: 10em;
     height: 7em;
 }
+
+.navbar-section .profileImage {
+    /* tus estilos aquí, estos afectarán solo al ProfileButton dentro de Navbar */
+    background-color: red;
+}
+
+.profileImage img {
+    /* estilos para la imagen dentro del ProfileButton que está dentro de Navbar */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+#profileButton{
+    display: block;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
