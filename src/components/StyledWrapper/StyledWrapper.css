@@ -2,3 +2,15 @@
     height: 1em;  /* o el valor que desees */
     width: auto;   /* esto es para mantener la proporción */
 }
+
+.styledWrapper {
+    display: flex;
+}
+
+.styled-component {
+    margin-right: 1em;
+}
+
+.styled-component:last-child {
+    margin-right: 0;  /* Esto es para asegurarte de que el último StyledWrapper no tenga un margen a la derecha */
+}

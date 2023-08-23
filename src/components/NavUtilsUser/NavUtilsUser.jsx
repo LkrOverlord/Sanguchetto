@@ -6,7 +6,7 @@ import StyledWrapper from "../StyledWrapper/StyledWrapper";
 
 const NavUtilsUser = () => {
     return (
-        <div>
+        <div className="styledWrapper">
             <StyledWrapper>
                 <Favorite></Favorite>
             </StyledWrapper>

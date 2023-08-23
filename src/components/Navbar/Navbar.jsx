@@ -32,8 +32,10 @@ const NavBar = () => {
                     </Col>
 
                     {/*Perfil - iniciar sesión*/}
-                    <Col lg={3} className="d-flex justify-content-center align-items-center m-0">
-                       <NavUtilsUser></NavUtilsUser>
+                    <Col lg={3} className="d-flex align-items-center">
+                       <NavUtilsUser>
+
+                       </NavUtilsUser>
                     </Col>
                 </Row>
 
