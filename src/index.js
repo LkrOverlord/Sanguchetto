@@ -4,11 +4,16 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavBar from "./components/Navbar/Navbar";
+import MyCarousel from "./components/Carousel/Carousel";
+import { Container } from "react-bootstrap";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <NavBar></NavBar>
+    <Container fluid className="full-width-container">
+      <MyCarousel></MyCarousel>
+    </Container>
   </React.StrictMode>
 );
 
